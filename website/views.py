@@ -11,3 +11,10 @@ def about_view(request):
 
 def contact_view(request):
     return render(request, 'website/contact.html')
+
+def testing_view(request):
+    context={
+        'fname':'hasan',
+        'lname':'karimi',
+    }
+    return render(request,'website/test.html',context)
