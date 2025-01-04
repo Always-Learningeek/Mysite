@@ -10,7 +10,7 @@ class Contact(models.Model):
     updated_date = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ['-created_date']
+        ordering = ['created_date']
         verbose_name = 'contact'
         verbose_name_plural = 'contacts'
 
