@@ -61,12 +61,8 @@
                   <nav id="nav-menu-container">
                     <ul class="nav-menu">
                       <li><a href="{% url 'website:index' %} ">Home</a></li>
-                      <li><a href="{% url 'website:about' %}">About</a></li>
-                      <li class="menu-has-children"><a href="">Blog</a>
-                        <ul>
-                          <li><a href="{% url 'blog:blog-home' %}">Blog Home</a></li>
-                          <li><a href="{% url 'blog:blog-single' %}">Blog Single</a></li>
-                        </ul>
+                      <li><a href="{% url 'website:about' %}">About</a></li   >
+                      <li><a href="{% url 'blog:blog-home' %}">Blog</a></li>
                       </li>
                       <li class="menu-has-children"><a href="">Pages</a>
                         <ul>

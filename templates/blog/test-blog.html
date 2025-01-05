@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for i in posts %}
+        <p>{{ i }}</p>
+    {% endfor %}
+
+    {{ name }}
+
+    <h1>{{ post.title }}</h1> <p>{{ post.content }}</p> <p>Views: {{ post.counted_view }}</p>
+</body>
+</html>
