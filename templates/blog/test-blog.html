@@ -10,6 +10,8 @@
     {% for i in posts %}
         <p>{{ i }}</p>
     {% endfor %}
+    
+    <img src="{{ posts.image.url }}" alt="{{ post.title }}">
 
     {{ name }}
 
