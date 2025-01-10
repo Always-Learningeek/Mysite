@@ -25,7 +25,7 @@
 							<div class="single-post row">
 								<div class="col-lg-12">
 									<div class="feature-img">
-										<img class="img-fluid" src="{% static 'img/blog/feature-img1.jpg' %}" alt="">
+										<img class="img-fluid" src="{{ post.image.url }}" alt="">
 									</div>									
 								</div>
 								<div class="col-lg-3  col-md-3 meta-details">
@@ -55,12 +55,12 @@
 									</p>
 								</div>
 							</div>
-							<div class="navigation-area">
+							<div class="navigation-area">                                          
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                      {% if previous_post %}
 										<div class="thumb">
-                                            {% if previous_post %}
-											<a href="{% url 'blog:blog-single' previous_post.id %}"><img class="img-fluid" src="{% static 'img/blog/prev.jpg' %}" alt=""></a>
+											<a href="{% url 'blog:blog-single' previous_post.id %}"><img class="img-fluid" src="{{ previous_post.image.url }}" alt="" width="150" height="150"></a>
 										</div>
 										<div class="arrow">
 											<a href="{% url 'blog:blog-single' previous_post.id %}"><span class="lnr text-white lnr-arrow-left"></span></a>
@@ -68,26 +68,22 @@
 										<div class="detials">
 											<a href ="{% url 'blog:blog-single' previous_post.id %}"><p>Prev Post</p> </a>
 											<a href ="{% url 'blog:blog-single' previous_post.id %}"><h4> {{ previous_post.title }} </h4></a>
-                                            {% else %}
-                                            <p>پستی نیست</p>
-                                            {% endif %}
                                         </div>
+                                      {% endif %}
 									</div>
 									<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                      {% if next_post %}
 										<div class="detials">                                            
-                                            {% if next_post %}
                                             <a href="{% url 'blog:blog-single' next_post.id %}"><p>Next Post</p></a>
                                             <a href="{% url 'blog:blog-single' next_post.id %}"><h4>{{ next_post.title }}</h4></a>
-                                            {% else %}
-                                                <p>پستی نیست</p>
-                                            {% endif %}
 										</div>
 										<div class="arrow">
-											<a href="{% url 'blog:blog-single' previous_post.id %}"><span class="lnr text-white lnr-arrow-right"></span></a>
+											<a href="{% url 'blog:blog-single' next_post.id %}"><span class="lnr text-white lnr-arrow-right"></span></a>
 										</div>
 										<div class="thumb">
-											<a href="{% url 'blog:blog-single' next_post.id %}"><img class="img-fluid" src="{% static 'img/blog/next.jpg' %}" alt=""></a>
+											<a href="{% url 'blog:blog-single' next_post.id %}"><img class="img-fluid" src="{{ next_post.image.url }}" alt="" width="130" height="150"></a>
 										</div>
+                                      {% endif %}
 									</div>									
 								</div>
 							</div>
