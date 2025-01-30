@@ -8,7 +8,7 @@ def blog_view(request, cat_name=None, author_username=None):
     if cat_name:
         posts = posts.filter(category__name=cat_name)
     if author_username:
-        posts = posts.filter(author__name=author_username)
+        posts = posts.filter(author__username=author_username)
 
     context = {'posts': posts}
     return render(request, 'blog/blog-home.html',context)
@@ -24,7 +24,13 @@ def blog_single(request, pid):
     context = {'post': post, 'previous_post': previous_post, 'next_post': next_post}
     return render(request, 'blog/blog-single.html', context)
 
-
+def blog_search(request):
+    posts = Post.objects.filter(status=1, published_date__lte=timezone.now())
+    if request.method == 'GET':
+        if q := request.GET.get('q'):
+            posts = Post.objects.filter(content__contains=q)
+    context = {'posts': posts}
+    return render(request, 'blog/blog-home.html', context)
 def test(request):
     posts =Post.objects.filter(published_date__lte=timezone.now())
     context = {'posts': posts}
