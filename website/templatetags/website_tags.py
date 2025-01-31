@@ -6,18 +6,13 @@ from django.utils import timezone
 register = template.Library()
 
 
-@register.inclusion_tag("blog/blog-latest-posts.html")
-def latest_posts(arg=4):
-    posts = Post.objects.filter(status=1, published_date__lte=timezone.now()).order_by('-published_date')[:arg]
-    return {'posts': posts}
-
-
-@register.inclusion_tag("blog/blog-categories.html")
-def postcategories():
+@register.inclusion_tag('website/blog_latest_posts_in_website.html')
+def blog_latest_posts_in_website(arg=6):
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now())
+    latest_posts= posts.order_by('-published_date')[:arg]
     categories = Category.objects.all()
     cat_dict={}
     for cat in categories:
         cat_dict[cat]=posts.filter(category=cat).count()
-    return {'categories':cat_dict}
-
+    context = {'latest_posts':latest_posts, 'categories':cat_dict}
+    return (context)

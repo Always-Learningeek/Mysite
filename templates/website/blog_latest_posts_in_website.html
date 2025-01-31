@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="row">
+    <div class="active-recent-blog-carusel">
+        {% for post in latest_posts %}
+            <div class="single-recent-blog-post item">
+                <div class="thumb">
+                    <img class="img-fluid" src="{{ post.image.url }}" alt="">
+                </div>
+                <div class="details">
+                    <div class="tags">
+                        <ul>
+                            {% for cat,count in categories.items %}
+                                <li>
+                                    <a href="{% url 'website:website-category' cat_name=cat %}">{{ cat.name }}</a> 
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <a href="{% url 'website:blog-single' pid=post.id %}"><h4 class="title">{{ post.title }}</h4></a>
+                    <p>{{ post.content|truncatewords:20 }}</p>
+                    <h6 class="date">{{ post.published_date|date:'d M Y'}}</h6>
+                </div>	
+            </div>	                            
+        {% endfor %}
+    </div>
+</div>
