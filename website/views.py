@@ -2,8 +2,9 @@ from django.shortcuts import render
 from blog.models import Post
 from django.utils import timezone
 from website.forms import ContactForm, NewsletterForm
-from django.http import HttpResponse , HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
 
 def index_view(request, cat_name=None):
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now())
@@ -17,10 +18,13 @@ def about_view(request):
     return render(request, 'website/about.html')
 
 
+@csrf_protect
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.name = 'Anonymous'
             form.save()
             messages.success(request, 'Your message has been sent.')
         else:
@@ -28,6 +32,7 @@ def contact_view(request):
     form = ContactForm()
     context = {'form': form}
     return render(request, 'website/contact.html', context)
+
 
 def newsletter_view(request):
     if request.method == 'POST':
@@ -41,11 +46,9 @@ def newsletter_view(request):
     context = {'form': form}
     return render(request, 'base.html', context)
 
-
-
 def testing_view(request):
-    context={
-        'fname':'hasan',
-        'lname':'karimi',
+    context = {
+        'fname': 'hasan',
+        'lname': 'karimi',
     }
-    return render(request,'website/test.html',context)
+    return render(request, 'website/test.html', context)
