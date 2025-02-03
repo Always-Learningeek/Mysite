@@ -55,6 +55,7 @@
 							</div>														
 						</div>
 						<div class="col-lg-8">
+                            {% include 'website/contactform_messages_and_errors.html' %}
 							<form class="form-area contact-form text-right"  action="{% url 'website:contact' %}" method="post">
 								<div class="row">
                                     {% csrf_token %}
@@ -74,7 +75,6 @@
 									</div>
 								</div>
 							</form>
-                        {% include 'website/contactform_messages_and_errors.html' %}
 						</div>
 					</div>
 				</div>	

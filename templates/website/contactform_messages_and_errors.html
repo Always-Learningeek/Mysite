@@ -1,9 +1,18 @@
 {% load static %}
 
-
 {% if messages %}
     {% for message in messages %}
-    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+        {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times; </a>
+                    {{ message | safe|escape }}
+            </div>
+        {% elif message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times; </a>
+                    {{ message| safe }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
 
