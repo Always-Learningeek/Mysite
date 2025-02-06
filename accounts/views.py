@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def login_view(request):
     if request.method == 'POST':
+        #from Captcha
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -13,8 +15,10 @@ def login_view(request):
     return render(request, 'accounts/login.html')
 
 
+@login_required
 def logout_view(request):
-    pass
+    logout(request)
+    return redirect('/')
 
 
 def signup_view(request):
