@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def login_view(request):
     if request.user.is_authenticated:
-        msg = 'You are already logged in!'
+        msg = f'You are already logged in {request.user.username}!'
     else:
         msg = 'You are not logged in!'
 
