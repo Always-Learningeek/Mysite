@@ -9,9 +9,9 @@ def login_view(request):
         if request.method == 'POST':
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
-                username = form.cleaned_data.get('username')
+                username_or_email = form.cleaned_data.get('username')
                 password = form.cleaned_data.get('password')
-                user = authenticate(request, username=username, password=password)
+                user = authenticate(request, username=username_or_email, password=password)
                 if user is not None:
                     login(request, user)
                     return redirect('/')
@@ -37,7 +37,7 @@ def signup_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request,user)
+            login(request, user)
             return redirect('/')
         else:
             #context = {'form': form}
@@ -47,3 +47,8 @@ def signup_view(request):
         form = UserCreationForm()
         context = {'form': form}
         return render(request, 'accounts/signup.html', context)
+
+
+def forgot_password_view(request):
+    #return redirect('accounts/signup.html')
+    return render(request, 'accounts/signup.html')
