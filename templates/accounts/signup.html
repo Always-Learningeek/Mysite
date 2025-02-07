@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,27 +30,30 @@
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
 		      	<form action="{% url 'accounts:signup' %}" class="signup-form" method="post">
                    {% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                      <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" required>
-                      <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
-                    </div>
-                    <div class="form-group d-md-flex">
-                        <div class="w-50">
-                            <label class="checkbox-wrap checkbox-primary">Remember Me
-                                          <input type="checkbox" checked>
-                                          <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="w-50 text-md-right">
-                                        <a href="#" style="color: #fff">Forgot Password</a>
-                                    </div>
-                    </div>
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                          <input id="password-field" type="password" name="password1" class="form-control" placeholder="Password" required>
+                          <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                          <input id="password-field" type="password" name="password2" class="form-control" placeholder="Password" required>
+                          <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">Remember Me
+                                    <input type="checkbox" checked> <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#" style="color: #fff">Forgot Password</a>
+                            </div>
+                        </div>
 	          </form>
 	          <p class="w-100 text-center">&mdash; Or Sign Up With &mdash;</p>
 	          <div class="social d-flex text-center">
