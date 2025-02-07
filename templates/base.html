@@ -42,7 +42,7 @@
                                 <li><a href="{% url 'accounts:login' %}">Logged in as {{ request.user.username }}</a></li>
                                 <li><a href="{% url 'accounts:logout' %}">Logged out</a></li>
                             {% else %}
-                                <li><a href="#">Sign up</a></li>
+                                <li><a href="{% url 'accounts:signup' %}">Sign up</a></li>
                                 <li><a href="{% url 'accounts:login' %}">Log in</a></li>
                             {% endif %}
                         </ul>
