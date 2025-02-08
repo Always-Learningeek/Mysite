@@ -2,19 +2,32 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
 
 
+@csrf_protect
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
-                username_or_email = form.cleaned_data.get('username')
+                username_or_email = form.cleaned_data.get('username', 'email')
                 password = form.cleaned_data.get('password')
-                user = authenticate(request, username=username_or_email, password=password)
+                if '@' in username_or_email:
+                    try:
+                        user = authenticate(request, username=username_or_email, password=password)
+                        messages.success(request, 'Login via email successful!.')
+                    except User.DoesNotExist:
+                        user = None
+                else:
+                    user = authenticate(request, username=username_or_email, password=password)
+                    messages.success(request, 'Logged in successfully.')
+
                 if user is not None:
                     login(request, user)
                     return redirect('/')
+
             else:
                 context = {'form': form, 'error': 'Invalid credentials or form'}
                 return render(request, 'accounts/login.html', context)
@@ -49,6 +62,7 @@ def signup_view(request):
         return render(request, 'accounts/signup.html', context)
 
 
-def forgot_password_view(request):
+#def forgot_password_view(request):
+    #x = auth_views.PasswordResetView.as_view()
     #return redirect('accounts/signup.html')
-    return render(request, 'accounts/signup.html')
+    #return render(request, 'accounts/password_reset_form.html',x)
