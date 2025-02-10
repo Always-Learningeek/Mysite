@@ -31,7 +31,10 @@
 		      	<form action="{% url 'accounts:signup' %}" class="signup-form" method="post">
                    {% csrf_token %}
                         <div class="form-group">
-                            <input type="text" name="username"  class="form-control" placeholder="Username / email" required>
+                            <input type="text" name="username"  class="form-control" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email"  class="form-control" placeholder="email" required>
                         </div>
                         <div class="form-group">
                           <input id="password-field" type="password" name="password1" class="form-control" placeholder="Password" required>
