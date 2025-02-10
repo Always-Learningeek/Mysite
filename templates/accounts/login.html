@@ -30,7 +30,6 @@
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
 		      	<form action="{% url 'accounts:login' %}" class="signin-form" method="post">
                    {% csrf_token %}
-                    {{ form.as_p }}
                     <div class="form-group">
                         <input type="text" name="username_or_email" class="form-control" placeholder="Username or Email" required>
                     </div>
