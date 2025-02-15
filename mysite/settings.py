@@ -28,7 +28,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 INSTALLED_APPS = [
     'multi_captcha_admin',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +43,11 @@ INSTALLED_APPS = [
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 }
+#simple captcha settings
+CAPTCHA_IMAGE_SIZE = (120, 49)
+CAPTCHA_FONT_SIZE = 32
+CAPTCHA_BACKGROUND_COLOR = '#ffac33'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
