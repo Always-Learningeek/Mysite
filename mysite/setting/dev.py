@@ -10,13 +10,26 @@ ALLOWED_HOSTS = []
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # MySQL engine
+        'NAME': '*********',         # Database name
+        'USER': '************',              # Your MySQL username
+        'PASSWORD': '******************',
+        'HOST': '*************',
+        'PORT': '3306',                       # Default MySQL port
+    }
+}
+'''
 
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'static'
