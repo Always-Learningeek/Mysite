@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from decouple import config
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,12 +39,14 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'captcha',
+    'compressor',
 ]
 
 MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 }
-#simple captcha settings
+
+# simple captcha settings
 CAPTCHA_IMAGE_SIZE = (120, 49)
 CAPTCHA_FONT_SIZE = 32
 CAPTCHA_BACKGROUND_COLOR = '#ffac33'
